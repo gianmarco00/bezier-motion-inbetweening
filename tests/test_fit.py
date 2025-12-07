@@ -10,5 +10,4 @@ def test_fit_reasonable_error():
     curve = fit_cubic_bezier(points, ts=ts, fix_ends=True)
     recon = curve.eval(ts)
 
-    # This threshold is loose on purpose for robustness.
     assert mse(points, recon) < 1e-2

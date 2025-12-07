@@ -19,5 +19,4 @@ def test_constraint_pulls_midpoint():
     new_mid = constrained.eval(t_c)
     new_mid = new_mid[0] if new_mid.ndim == 2 else new_mid
 
-    # Ensure we're closer to target than the base curve
     assert np.linalg.norm(new_mid - target) < np.linalg.norm(base_mid - target)
