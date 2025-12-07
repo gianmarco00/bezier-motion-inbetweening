@@ -13,6 +13,8 @@ def enforce_point_constraint_weighted(
     """
     Adjust P1 and P2 so that B(t_c) is pulled toward `target`.
     Uses weighted least squares with fixed endpoints.
+
+    This is a pragmatic, clean demo of "keyjoint target control".
     """
     if not (0.0 <= t_c <= 1.0):
         raise ValueError("t_c must be in [0,1].")
@@ -24,10 +26,20 @@ def enforce_point_constraint_weighted(
     P0, P3 = curve.P0, curve.P3
     d = curve.dim
 
+    # Create a small pseudo-dataset:
+    # We'll fit P1,P2 with:
+    # 1) a soft prior that keeps them near original P1,P2
+    # 2) a strongly weighted constraint equation at t_c
+
+    # Unknown vector per dim: [P1, P2]
+    # We'll form A x = b.
+
+    # Prior rows: identity
     A_prior = np.array([[1.0, 0.0], [0.0, 1.0]])
-    # Weight the prior (1.0)
+    # Weight the prior lightly (1.0)
     w_prior = 1.0
 
+    # Constraint row at t_c:
     t = float(t_c)
     one = 1.0 - t
     c0 = one**3
@@ -36,9 +48,10 @@ def enforce_point_constraint_weighted(
     c3 = t**3
 
     A_c = np.array([[c1, c2]])
-
+    # Right side for each dimension:
     rhs_c = target - c0 * P0 - c3 * P3
 
+    # Stack weighted system
     A = np.vstack([
         w_prior * A_prior,
         weight * A_c,

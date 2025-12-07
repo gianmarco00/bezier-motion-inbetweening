@@ -1,0 +1,7 @@
+numpy>=1.23
+matplotlib>=3.7
+
+[dev]
+pytest>=7.0
+ruff>=0.5
+black>=24.0

@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/bezier_inbetweening/__init__.py
+src/bezier_inbetweening/bezier.py
+src/bezier_inbetweening/constraints.py
+src/bezier_inbetweening/fit.py
+src/bezier_inbetweening/utils.py
+src/bezier_inbetweening.egg-info/PKG-INFO
+src/bezier_inbetweening.egg-info/SOURCES.txt
+src/bezier_inbetweening.egg-info/dependency_links.txt
+src/bezier_inbetweening.egg-info/requires.txt
+src/bezier_inbetweening.egg-info/top_level.txt
+tests/test_bezier_eval.py
+tests/test_constraints.py
+tests/test_fit.py
