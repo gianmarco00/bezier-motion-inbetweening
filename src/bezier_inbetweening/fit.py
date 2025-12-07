@@ -21,8 +21,6 @@ def fit_cubic_bezier(
     If fix_ends=True:
         P0 = points[0], P3 = points[-1]
         Solve least squares for P1, P2.
-
-    This is a clean, stable baseline that is great for a thesis demo.
     """
     points = np.asarray(points, dtype=float)
     if points.ndim != 2:
@@ -56,9 +54,8 @@ def fit_cubic_bezier(
         # => (c1 c2) [P1; P2] = points - c0*P0 - c3*P3
         A = np.concatenate([c1, c2], axis=1)  # (N, 2)
 
-        rhs = points - c0 * P0 - c3 * P3      # broadcast to (N, D)
+        rhs = points - c0 * P0 - c3 * P3  
 
-        # Solve independently for each dimension
         P1 = np.zeros(d)
         P2 = np.zeros(d)
         for j in range(d):
@@ -67,8 +64,6 @@ def fit_cubic_bezier(
 
         return CubicBezier(P0=P0, P1=P1, P2=P2, P3=P3)
 
-    # Optional: fit all four control points (least squares)
-    # Useful if you later want to allow noisy endpoints.
     t = ts.reshape(-1, 1)
     one = 1.0 - t
 
@@ -91,11 +86,7 @@ def fit_piecewise_bezier(
     num_segments: int = 2,
     fix_ends: bool = True,
 ) -> list[CubicBezier]:
-    """
-    Fit multiple cubic Bézier segments to a trajectory by uniform splitting.
-
-    This is deliberately simple for a first repo version.
-    """
+    
     points = np.asarray(points, dtype=float)
     n = points.shape[0]
 
