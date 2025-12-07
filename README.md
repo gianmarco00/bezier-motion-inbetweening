@@ -15,13 +15,6 @@ controls are modeled first and later expanded to full-body motion.
 - Fit a cubic Bézier curve to a 3D keyjoint trajectory.
 - Optional piecewise Bézier fitting.
 - Constraint demo: pull the curve toward a user-defined target at a chosen time.
-- Minimal tests + clean API.
-
-## Why Bézier?
-Cubic Bézier curves offer:
-- Smooth motion with compact parameters.
-- Intuitive control points.
-- A natural interface for animator-style edits.
 
 ## Install
 ```bash
