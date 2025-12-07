@@ -51,9 +51,7 @@ class CubicBezier:
         return pts
 
     def derivative(self, t: np.ndarray | float) -> np.ndarray:
-        """
-        First derivative wrt t.
-        """
+
         t = np.asarray(t, dtype=float)
         t_shape = t.shape
 
